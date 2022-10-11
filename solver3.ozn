@@ -1,0 +1,4 @@
+output ["\"output\": {","\"default\": ",showJSON(concat(["i=0 "]++[((""++format(j)++":")++show(tpos[i,j]))++if j==A then if i==maxTime then "" else "\ni="++format(i)++" " endif else "  " endif | i in 1..maxTime, j in 1..A])),", \"raw\": ",showJSON(concat(["i=0 "]++[((""++format(j)++":")++show(tpos[i,j]))++if j==A then if i==maxTime then "" else "\ni="++format(i)++" " endif else "  " endif | i in 1..maxTime, j in 1..A])),"}, \"sections\": [\"default\", \"raw\"]"];
+int: A = 3;
+int: maxTime = 9;
+array [1..maxTime,1..A] of int: tpos;
