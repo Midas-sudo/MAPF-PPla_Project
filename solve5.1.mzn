@@ -18,11 +18,13 @@ constraint forall(j in 1..A) (tpos[1,j] = input[j, 1] /\ tpos[maxTime,j] = input
 constraint forall(i in 1..maxTime) (alldifferent(row(tpos, i))); 
 
 %agents have to move to connected vertice
-constraint forall(i in 1..maxTime-1, j in 1..A) (tpos[maxTime-i,j] in edges[tpos[maxTime-i+1,j]] /\ tpos[i+1,j] in edges[tpos[i,j]] /\ forall([tpos[i,j] != tpos[i+1,a] | a in 1..A where j != a]));
+constraint forall(i in 1..maxTime-1, j in 1..A) (tpos[i+1,j] in edges[tpos[i,j]] /\ forall([tpos[i,j] != tpos[i+1,a] | a in 1..A where j != a]));
+
+%agents can only move to an empty vertice
 
 
-%solve :: seq_search([int_search([tpos[i, j] | i in 1..maxTime, j in 1..A], dom_w_deg, indomain_min, complete)]) satisfy;
-solve :: seq_search([int_search([tpos[i, j] | i in 1..maxTime, j in 1..A], dom_w_deg, indomain_median, complete)]) satisfy;
+
+solve :: seq_search([int_search([tpos[i, j] | i in 1..maxTime, j in 1..A], dom_w_deg, indomain_min, complete)]) satisfy;
 %solve satisfy;
 
 output["i=0 "];

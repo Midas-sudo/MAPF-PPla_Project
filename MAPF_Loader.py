@@ -97,8 +97,9 @@ edges.sort()
 edges_array = []
 
 for edge in edges:
-    if len(edges_array) < edge[0]:
+    while len(edges_array) < edge[0]:
         edges_array.append({edge[0]})
+   
     edges_array[edge[0]-1].add(edge[1])
 
 formated_edges += str(edges_array)
@@ -110,21 +111,20 @@ _input = formated_edges + formated_scen + 'V = ' + \
 
 print(_input)
 
-print(iedges)
-g = ig.Graph(iedges, directed=False)
+
+g = ig.Graph(iedges, n=nb_vertices, directed=False)
 results = []
 for a in agents_array:
     #print(g.get_shortest_paths(a[0], to=a[1], output="epath"))
     results.append(len(g.get_shortest_paths(a[0]-1, to=a[1]-1, output="epath")[0]))
 
 fig, ax = plt.subplots(figsize=(10, 10))
-ig.plot(g, target=ax, vertex_size=0.1, vertex_label=['1','2','3','4'])
+ig.plot(g, target=ax, vertex_size=0.1, vertex_label=range(1, nb_vertices+1))
 
-plt.show()
+#plt.show()
 #print("Lower Limit: ", max(results))
 #print("Upper Limit: ", sum(results))
-
-# print("Lower Limit: ", max(results))
+print("Lower Limit: ", max(results))
 
 # engine = Model("./solver2.mzn")
 
