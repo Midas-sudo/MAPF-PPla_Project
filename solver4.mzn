@@ -30,4 +30,4 @@ output["i=0 "];
 
 output["\(j):" ++ show(tpos[i,j]) ++ 
          if j == A then (if i == maxTime then "" else "\ni=\(i) " endif) else "  " endif |
-         i in 1..maxTime, j in 1.
+         i in 1..maxTime, j in 1..A];

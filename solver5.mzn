@@ -11,7 +11,7 @@ array[1..maxTime, 1..A] of var 1..V: tpos; %position in timesni
 
 
 
-
+%constraint redundant_constraint(forall(j in 1..A)(tpos[maxTime,j] in edges[tpos[maxTime-1, j]]));
 constraint forall(j in 1..A) (tpos[1,j] = input[j, 1] /\ tpos[maxTime,j] = input[j, 2]); %Initialization
 
 %two agents cannot be in the same vertex at the same time

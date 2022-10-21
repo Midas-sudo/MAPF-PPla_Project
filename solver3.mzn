@@ -21,9 +21,8 @@ constraint forall(j in 1..A) (tpos[maxTime,j] = input[j, 2]); %Ending vertex
 %constraint forall(i in 1..maxTime, j in 1..A, k in 1..A) (j != k -> tpos[i,j] != tpos[i,k]);
 
 %constraint  forall(i in 1..maxTime) (alldifferent(j in 1..A)(tpos[i , j])); 
-%constraint  forall(i in 1..maxTime) (alldifferent([tpos[i , j]| j in 1..A])); 
+constraint  forall(i in 1..maxTime) (alldifferent([tpos[i , j]| j in 1..A])); 
 %constraint  forall(i in 1..maxTime) (alldifferent(tpos[i , 1..A])); 
-constraint forall(i in 1..maxTime) (alldifferent(row(tpos, i))); 
 
 %agents have to move to connected vertice
 constraint forall(i in 1..maxTime-1, j in 1..A) (tpos[i+1,j] in edges[tpos[i,j]]);
